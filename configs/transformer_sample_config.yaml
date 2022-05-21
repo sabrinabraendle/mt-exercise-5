@@ -15,6 +15,7 @@ data:
     # or (= not both!) a file with a vocabulary built before starting the training:
     src_vocab: "?"
     trg_vocab: "?"
+    # random_train_subset: 100000
 
 testing:
     beam_size: ?

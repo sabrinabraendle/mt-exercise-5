@@ -34,10 +34,18 @@ Download data:
 The data is only minimally preprocessed, so you may want to tokenize it and apply any further preprocessing steps.
 
 Preprocessing:
-- write reusable scripts: Sub-sample your parallel training data randomly to 
-100k sentence pairs to make training manageable on small machines.
+- Sub-sample parallel training data randomly to 100k sentence pairs
+  - Either use the random_train_subset parameter in the data section of the configuration to load only a random subset of the training data
+  - Or use the following script:
+
+
+    ./scripts/subsample.sh
+
+
 - For preprocessing, the only step we recommend you do for all models is tokenization.
 There is no need for truecasing, normalization or any kind of cleaning.
+
+
 
 
 
