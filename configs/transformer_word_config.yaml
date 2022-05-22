@@ -1,24 +1,24 @@
-name: "transformer_sample_config"
+name: "transformer_word_config"
 
 data:
-    src: "?"
-    trg: "?"
-    train: "?"
-    dev:   "?"
-    test:  "?"
-    level: "?"
+    src: "en"   # src language: expected suffix of train files, e.g. "train.de"
+    trg: "it"   # trg language
+    train: "tokenized/train.en-it.tokenized"
+    dev:   "tokenized/dev.en-it.tokenized"
+    test:  "tokenized/test.en-it.tokenized"
+    level: "word"   # segmentation level: either "word", "bpe" or "char"
     lowercase: False
     max_sent_length: 100
     # either use a vocabulary limit:
-    src_voc_limit: ?
-    trg_voc_limit: ?
+    src_voc_limit: 2000
+    trg_voc_limit: 2000 # trg vocabulary only includes this many most frequent tokens, default: unlimited, should be same as src_voc_limit
     # or (= not both!) a file with a vocabulary built before starting the training:
-    src_vocab: "?"
-    trg_vocab: "?"
+    # src_vocab: "?"    # if specified, load a vocabulary from this file, one token per line, line number is index
+    # trg_vocab: "?"
     # random_train_subset: 100000
 
 testing:
-    beam_size: ?
+    beam_size: 5    # size of the beam for beam search
     alpha: 1.0
 
 training:
@@ -39,7 +39,7 @@ training:
     validation_freq: 500
     logging_freq: 100
     eval_metric: "bleu"
-    model_dir: "?"
+    model_dir: "models/transformer_word_config"  # directory where models and validation results are stored, required
     overwrite: False
     shuffle: True
     use_cuda: False
@@ -53,7 +53,7 @@ model:
     init_gain: 1.0
     embed_initializer: "xavier"
     embed_init_gain: 1.0
-    tied_embeddings: True
+    tied_embeddings: False
     tied_softmax: True
     encoder:
         type: "transformer"

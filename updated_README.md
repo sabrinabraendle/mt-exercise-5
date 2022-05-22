@@ -23,6 +23,8 @@ Create a new virtualenv that uses Python 3. Please make sure to run this command
 
 **Important**: Then activate the env by executing the `source` command that is output by the shell script above.
 
+    source scripts/../venvs/torch3/bin/activate
+
 Download and install required software:
 
     ./scripts/download_install_packages.sh
@@ -36,21 +38,22 @@ The data is only minimally preprocessed, so you may want to tokenize it and appl
 Preprocessing:
 - Sub-sample parallel training data randomly to 100k sentence pairs
   - Either use the random_train_subset parameter in the data section of the configuration to load only a random subset of the training data
-  - Or use the following script:
+  - Or use the following script in advance:
 
 
     ./scripts/subsample.sh
 
 
-- For preprocessing, the only step we recommend you do for all models is tokenization.
-There is no need for truecasing, normalization or any kind of cleaning.
+- Tokenize the dev, test, and (subsampled) train data:
 
- 
 
-For the word-level JoeyNMT model, we recommend to not build vocabulary files
-before training, but use the config fields src voc limit and trg voc limit to set a
-vocabulary threshold for both languages. To be fair, you should perhaps use the same
-vocabulary size for each language.
+    ./scripts/tokenize.sh
+
+
+Train the word-level model:
+
+    ./scripts/train_wordlevel.sh
+
 • For the BPE-level JoeyNMT model, we recommend to build a single (= the same for
 both languages) vocabulary file before training, using a script that comes with JoeyNMT
 that extracts a vocabulary file from input text:
