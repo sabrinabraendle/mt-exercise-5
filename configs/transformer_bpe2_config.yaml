@@ -3,9 +3,9 @@ name: "transformer_bpe2_config"
 data:
     src: "en"   # src language: expected suffix of train files, e.g. "train.de"
     trg: "it"   # trg language
-    train: "tokenized/train.en-it.tokenized"
-    dev:   "tokenized/dev.en-it.tokenized"
-    test:  "tokenized/test.en-it.tokenized"
+    train: "bpe_files/train.en-it.bpe2"
+    dev:   "bpe_files/dev.en-it.bpe2"
+    test:  "bpe_files/test.en-it.bpe2"
     level: "bpe"   # segmentation level: either "word", "bpe" or "char"
     lowercase: False
     max_sent_length: 100
@@ -13,8 +13,8 @@ data:
     # src_voc_limit: 2000
     # trg_voc_limit: 2000 # trg vocabulary only includes this many most frequent tokens, default: unlimited, should be same as src_voc_limit
     # or (= not both!) a file with a vocabulary built before starting the training:
-    src_vocab: "vocab.bpe2.en"
-    trg_vocab: "vocab.bpe2.it"
+    src_vocab: "vocab.bpe2.joint"
+    trg_vocab: "vocab.bpe2.joint"
     # random_train_subset: 100000
 
 testing:
