@@ -45,8 +45,20 @@ Preprocessing:
 - For preprocessing, the only step we recommend you do for all models is tokenization.
 There is no need for truecasing, normalization or any kind of cleaning.
 
+ 
 
-
+For the word-level JoeyNMT model, we recommend to not build vocabulary files
+before training, but use the config fields src voc limit and trg voc limit to set a
+vocabulary threshold for both languages. To be fair, you should perhaps use the same
+vocabulary size for each language.
+• For the BPE-level JoeyNMT model, we recommend to build a single (= the same for
+both languages) vocabulary file before training, using a script that comes with JoeyNMT
+that extracts a vocabulary file from input text:
+python tools/joeynmt/scripts/build_vocab.py \
+[input source text] [input target text] \
+--output_path [path to save vocab file]
+For the BPE-level NMT model, do not use src voc limit and trg voc limit in the
+config. Use src vocab and trg vocab instead to point to the vocab file.
 
 
 Train a model:

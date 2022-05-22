@@ -4,47 +4,38 @@ scripts=`dirname "$0"`
 base=$scripts/..
 
 data=$base/data
-configs=$base/configs
+tokenized=$base/tokenized
 
-translations=$base/translations
+mkdir -p $tokenized
 
-mkdir -p $translations
-
-src=de
-trg=en
+src=en
+trg=it
+direction=en-it
 
 # cloned from https://github.com/bricksdont/moses-scripts
 MOSES=$base/tools/moses-scripts/scripts
-
-num_threads=4
-device=0
 
 # measure time
 
 SECONDS=0
 
-model_name=transformer_sample_config
-
 echo "###############################################################################"
-echo "model_name $model_name"
+echo "tokenizing..."
 
-translations_sub=$translations/$model_name
+# tokenize dev files
 
-mkdir -p $translations_sub
+cat $data/dev.$direction.$src | $MOSES/tokenizer/tokenizer.perl -l $src > $tokenized/dev.$direction.tokenized.$src
+cat $data/dev.$direction.$trg | $MOSES/tokenizer/tokenizer.perl -l $trg > $tokenized/dev.$direction.tokenized.$trg
 
-CUDA_VISIBLE_DEVICES=$device OMP_NUM_THREADS=$num_threads python -m joeynmt translate $configs/$model_name.yaml < $data/test.bpe.$src > $translations_sub/test.bpe.$model_name.$trg
+# tokenize train files
 
-# undo BPE
+cat $data/sampled_train.$src | $MOSES/tokenizer/tokenizer.perl -l $src > $tokenized/train.$direction.tokenized.$src
+cat $data/sampled_train.$trg | $MOSES/tokenizer/tokenizer.perl -l $trg > $tokenized/train.$direction.tokenized.$trg
 
-cat $translations_sub/test.bpe.$model_name.$trg | sed 's/\@\@ //g' > $translations_sub/test.tokenized.$model_name.$trg
+# tokenize test files
 
-# undo tokenization
-
-cat $translations_sub/test.tokenized.$model_name.$trg | $MOSES/tokenizer/detokenizer.perl -l $trg > $translations_sub/test.$model_name.$trg
-
-# compute case-sensitive BLEU on detokenized data
-
-cat $translations_sub/test.$model_name.$trg | sacrebleu $data/test.$trg
+cat $data/test.$direction.$src | $MOSES/tokenizer/tokenizer.perl -l $src > $tokenized/test.$direction.tokenized.$src
+cat $data/test.$direction.$trg | $MOSES/tokenizer/tokenizer.perl -l $trg > $tokenized/test.$direction.tokenized.$trg
 
 
 echo "time taken:"
