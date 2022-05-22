@@ -94,6 +94,14 @@ The training process can be interrupted at any time, and the best checkpoint wil
 
 
 ## Evaluation
-Evaluate a trained model with
+Evaluate the trained word-level model with
 
-    ./scripts/evaluate.sh
+    ./scripts/evaluate_word.sh
+
+Evaluate the first trained BPE-level model with
+
+    ./scripts/evaluate_bpe1.sh
+
+Evaluate the second trained BPE-level model with
+
+    ./scripts/evaluate_bpe2.sh
