@@ -73,8 +73,6 @@ Apply the BPE models to all files with the following scripts:
     ./scripts/apply_bpe1.sh
     ./scripts/apply_bpe2.sh
 
-
-
 Build a single (= the same for both languages) vocabulary file before training, 
 using a script that comes with JoeyNMT that extracts a vocabulary file from 
 input text:
