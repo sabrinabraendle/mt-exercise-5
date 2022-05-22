@@ -12,6 +12,7 @@ data and train & evaluate models.
     `pip install virtualenv`
 
 # Steps
+## Preparations
 
 Clone this repository in the desired place:
 
@@ -33,12 +34,14 @@ Download data:
 
     ./scripts/download_iwslt_2017_data.sh
 
-The data is only minimally preprocessed, so you may want to tokenize it and apply any further preprocessing steps.
+## General Preprocessing
 
-Preprocessing:
+The data is only minimally preprocessed, so we tokenize it for all models.
+
+Preprocessing for all models:
 - Sub-sample parallel training data randomly to 100k sentence pairs
   - Either use the random_train_subset parameter in the data section of the configuration to load only a random subset of the training data
-  - Or use the following script in advance:
+  - Or use the following script in advance as shown in our example:
 
 
     ./scripts/subsample.sh
@@ -50,26 +53,49 @@ Preprocessing:
     ./scripts/tokenize.sh
 
 
+## Word-level Model
 Train the word-level model:
 
     ./scripts/train_wordlevel.sh
 
-• For the BPE-level JoeyNMT model, we recommend to build a single (= the same for
-both languages) vocabulary file before training, using a script that comes with JoeyNMT
-that extracts a vocabulary file from input text:
-python tools/joeynmt/scripts/build_vocab.py \
-[input source text] [input target text] \
---output_path [path to save vocab file]
-For the BPE-level NMT model, do not use src voc limit and trg voc limit in the
-config. Use src vocab and trg vocab instead to point to the vocab file.
+The training process can be interrupted at any time, and the best checkpoint will always be saved.
+
+## BPE-level Models
+### BPE Preprocessing
+Before training the BPE-level models, use the following scripts to learn byte pair encoding 
+on the concatenation of the training text, and get resulting vocabulary for each:
+
+    ./scripts/learn_joint_bpe1_and_vocab.sh
+    ./scripts/learn_joint_bpe2_and_vocab.sh
+
+Apply the BPE models to all files with the following scripts:
+
+    ./scripts/apply_bpe1.sh
+    ./scripts/apply_bpe2.sh
 
 
-Train a model:
 
-    ./scripts/train.sh
+Build a single (= the same for both languages) vocabulary file before training, 
+using a script that comes with JoeyNMT that extracts a vocabulary file from 
+input text:
+
+    ./scripts/build_vocab_bpe1.sh
+    ./scripts/build_vocab_bpe2.sh
+
+
+### BPE Training
+Train the first BPE-level model (voc size 2000):
+
+    ./scripts/train_bpe1.sh
+
+Train the second BPE-level model (voc size 1000):
+
+    ./scripts/train_bpe2.sh
 
 The training process can be interrupted at any time, and the best checkpoint will always be saved.
 
+
+## Evaluation
 Evaluate a trained model with
 
     ./scripts/evaluate.sh
