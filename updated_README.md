@@ -44,13 +44,17 @@ Preprocessing for all models:
   - Or use the following script in advance as shown in our example:
 
 
+
     ./scripts/subsample.sh
+
 
 
 - Tokenize the dev, test, and (subsampled) train data:
 
 
+
     ./scripts/tokenize.sh
+
 
 
 ## Word-level Model
