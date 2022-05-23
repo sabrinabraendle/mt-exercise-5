@@ -102,7 +102,7 @@ Evaluate the second trained BPE-level model with
 
 The results of this evaluation are the following:
 
---- | use BPE | vocabulary size | BLEU |
+| use BPE | vocabulary size | BLEU |
  --- | --- | --- | --- | --- |
 a) word-level | no | 2000 | ? |
  --- | --- | --- | --- | --- |
