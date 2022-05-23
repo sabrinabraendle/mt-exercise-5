@@ -108,4 +108,15 @@ a) word-level | no | 2000 | ? |
 b) bpe-level1 | yes | 2000 | ? |
 c) bpe-level2 | yes | 1000 | ? |
 
+### Discussion
+...
+
+
+# Beam Search
+
+-> Graph
+
+TODO: Given your graph, describe the impact of beam size on BLEU and your personal take on
+which beam size you would choose in the future.
+
 
