@@ -38,24 +38,13 @@ Download data:
 
 The data is only minimally preprocessed, so we tokenize it for all models.
 
-Preprocessing for all models:
-- Sub-sample parallel training data randomly to 100k sentence pairs
-  - Either use the random_train_subset parameter in the data section of the configuration to load only a random subset of the training data
-  - Or use the following script in advance as shown in our example:
-
-
+Sub-sample parallel training data randomly to 100k sentence pairs using the following script in advance as shown in our example:
 
     ./scripts/subsample.sh
 
-
-
-- Tokenize the dev, test, and (subsampled) train data:
-
-
+Tokenize the dev, test, and (subsampled) train data:
 
     ./scripts/tokenize.sh
-
-
 
 ## Word-level Model
 Train the word-level model:
