@@ -134,7 +134,11 @@ In order to create the graph from the results, run the following command:
 
 The results are shown in the graph below:
 
--> Graph
+![alt text](BLEU_beam.png)
+
+
+### Discussion
+...
 
 TODO: Given your graph, describe the impact of beam size on BLEU and your personal take on
 which beam size you would choose in the future.

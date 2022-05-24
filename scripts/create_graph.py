@@ -27,13 +27,15 @@ def read_results(input_files):
     BLEUs = []
 
     # Loop over all input files and store the beam size and BLEU score
-    for filename in os.listdir(input_files):
-        file = os.path.join(input_files, filename)
-        beams.append(int(filename.split('_')[1].strip('k')))
-        with open(file, 'r', encoding='utf-8') as file:
-            for line in file:
-                if '"score"' in line:
-                    BLEUs.append(float(line.split()[-1].strip(',')))
+    for i in range(11):
+        for filename in os.listdir(input_files):
+            if f'_k{i}_' in filename:
+                file = os.path.join(input_files, filename)
+                beams.append(i)
+                with open(file, 'r', encoding='utf-8') as file:
+                    for line in file:
+                        if '"score"' in line:
+                            BLEUs.append(float(line.split()[-1].strip(',')))
 
     return beams, BLEUs
 
@@ -43,6 +45,11 @@ def create_graph(beam_sizes, BLEU_scores):
     Function to create graph with beam sizes on the x-axis and BLEU scores on the y-axis.
     """
     plt.plot(beam_sizes, BLEU_scores)
+    plt.title('Beam Search')
+    plt.xlabel('Beam Size')
+    plt.ylabel('BLEU score')
+
+    return plt
 
 
 def main():
@@ -61,7 +68,8 @@ def main():
     beam, BLEU = read_results(result_files)
 
     graph = create_graph(beam, BLEU)
-    print(graph)
+    graph.savefig('BLEU_beam.pdf')
+    graph.savefig('BLEU_beam.png')
 
 
 if __name__ == '__main__':
