@@ -111,6 +111,9 @@ c) bpe-level2 | yes | 1000 | 18.5 |
 ### Discussion
 ...
 
+TODO: Investigate the difference in BLEU on the test set, 
+but also describe how translations differ if you look at them manually.
+
 
 # Beam Search
 
