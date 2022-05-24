@@ -25,8 +25,8 @@ device=0
 
 SECONDS=0
 
-model=bpe1
-model_name=transformer_bpe1_config
+model=bpe2
+model_name=transformer_bpe2_config
 
 echo "###############################################################################"
 echo "model_name $model_name"
