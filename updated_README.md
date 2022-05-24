@@ -38,20 +38,13 @@ Download data:
 
 The data is only minimally preprocessed, so we tokenize it for all models.
 
-Preprocessing for all models:
-- Sub-sample parallel training data randomly to 100k sentence pairs
-  - Either use the random_train_subset parameter in the data section of the configuration to load only a random subset of the training data
-  - Or use the following script in advance as shown in our example:
-
+Sub-sample parallel training data randomly to 100k sentence pairs using the following script in advance as shown in our example:
 
     ./scripts/subsample.sh
 
-
-- Tokenize the dev, test, and (subsampled) train data:
-
+Tokenize the dev, test, and (subsampled) train data:
 
     ./scripts/tokenize.sh
-
 
 ## Word-level Model
 Train the word-level model:
@@ -105,3 +98,25 @@ Evaluate the first trained BPE-level model with
 Evaluate the second trained BPE-level model with
 
     ./scripts/evaluate_bpe2.sh
+
+
+The results of this evaluation are the following:
+
+Model | use BPE | vocabulary size | BLEU |
+ --- | --- | --- | --- |
+a) word-level | no | 2000 | ? |
+b) bpe-level1 | yes | 2000 | ? |
+c) bpe-level2 | yes | 1000 | ? |
+
+### Discussion
+...
+
+
+# Beam Search
+
+-> Graph
+
+TODO: Given your graph, describe the impact of beam size on BLEU and your personal take on
+which beam size you would choose in the future.
+
+
