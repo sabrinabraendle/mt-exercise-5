@@ -114,6 +114,21 @@ c) bpe-level2 | yes | 1000 | ? |
 
 # Beam Search
 
+In order to obtain the data for the graph run the following scripts (pointing to different .yaml files for the beam sizes):
+
+    ./scripts/evaluate_MODEL_BEAM.sh
+    ./scripts/evaluate_MODEL_BEAM.sh
+    ./scripts/evaluate_MODEL_BEAM.sh
+    ./scripts/evaluate_MODEL_BEAM.sh
+    ./scripts/evaluate_MODEL_BEAM.sh
+    ./scripts/evaluate_MODEL_BEAM.sh
+    ./scripts/evaluate_MODEL_BEAM.sh
+    ./scripts/evaluate_MODEL_BEAM.sh
+    ./scripts/evaluate_MODEL_BEAM.sh
+    ./scripts/evaluate_MODEL_BEAM.sh
+
+The results are shown in the graph below:
+
 -> Graph
 
 TODO: Given your graph, describe the impact of beam size on BLEU and your personal take on
