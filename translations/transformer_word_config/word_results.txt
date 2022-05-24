@@ -1,0 +1,16 @@
+###############################################################################
+model_name transformer_word_config
+{
+ "name": "BLEU",
+ "score": 11.8,
+ "signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.1.0",
+ "verbose_score": "34.9/15.8/8.2/4.3 (BP = 1.000 ratio = 1.315 hyp_len = 37395 ref_len = 28445)",
+ "nrefs": "1",
+ "case": "mixed",
+ "eff": "no",
+ "tok": "13a",
+ "smooth": "exp",
+ "version": "2.1.0"
+}
+time taken:
+127 seconds
