@@ -8,6 +8,7 @@
 
 import argparse
 import os
+import matplotlib.pyplot as plt
 
 
 def get_parser() -> argparse.ArgumentParser:
@@ -41,9 +42,7 @@ def create_graph(beam_sizes, BLEU_scores):
     """
     Function to create graph with beam sizes on the x-axis and BLEU scores on the y-axis.
     """
-    print(beam_sizes)
-    print(BLEU_scores)
-    pass
+    plt.plot(beam_sizes, BLEU_scores)
 
 
 def main():
