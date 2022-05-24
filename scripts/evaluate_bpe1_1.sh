@@ -32,8 +32,10 @@ echo "##########################################################################
 echo "model_name $model_name"
 
 translations_sub=$translations/$model_name
+results=$translations/results
 
 mkdir -p $translations_sub
+mkdir -p $results
 
 CUDA_VISIBLE_DEVICES=$device OMP_NUM_THREADS=$num_threads python -m joeynmt translate $configs/$model_name.yaml < $bpe_files/test.$direction.$model.$src > $translations_sub/test.$model.$model_name.$trg
 

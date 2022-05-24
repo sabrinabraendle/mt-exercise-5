@@ -114,19 +114,23 @@ c) bpe-level2 | yes | 1000 | 18.5 |
 
 # Beam Search
 
-In order to obtain the data for the graph execute the following commands in order to run the evaluation scripts 
+In order to obtain the data for the graph, execute the following commands in order to run the evaluation scripts 
 (pointing to different .yaml files for the beam sizes) and to save the output:
 
-    ./scripts/evaluate_bpe1_1.sh > ./translations/transformer_bpe1_config/bpe1_k1_results.txt
-    ./scripts/evaluate_bpe1_2.sh > ./translations/transformer_bpe1_config/bpe1_k2_results.txt
-    ./scripts/evaluate_bpe1_3.sh > ./translations/transformer_bpe1_config/bpe1_k3_results.txt
-    ./scripts/evaluate_bpe1_4.sh > ./translations/transformer_bpe1_config/bpe1_k4_results.txt
-    ./scripts/evaluate_bpe1_5.sh > ./translations/transformer_bpe1_config/bpe1_k5_results.txt
-    ./scripts/evaluate_bpe1_6.sh > ./translations/transformer_bpe1_config/bpe1_k6_results.txt
-    ./scripts/evaluate_bpe1_7.sh > ./translations/transformer_bpe1_config/bpe1_k7_results.txt
-    ./scripts/evaluate_bpe1_8.sh > ./translations/transformer_bpe1_config/bpe1_k8_results.txt
-    ./scripts/evaluate_bpe1_9.sh > ./translations/transformer_bpe1_config/bpe1_k9_results.txt
-    ./scripts/evaluate_bpe1_10.sh > ./translations/transformer_bpe1_config/bpe1_k10_results.txt
+    ./scripts/evaluate_bpe1_1.sh > ./translations/results/bpe1_k1_results.txt
+    ./scripts/evaluate_bpe1_2.sh > ./translations/results/bpe1_k2_results.txt
+    ./scripts/evaluate_bpe1_3.sh > ./translations/results/bpe1_k3_results.txt
+    ./scripts/evaluate_bpe1_4.sh > ./translations/results/bpe1_k4_results.txt
+    ./scripts/evaluate_bpe1_5.sh > ./translations/results/bpe1_k5_results.txt
+    ./scripts/evaluate_bpe1_6.sh > ./translations/results/bpe1_k6_results.txt
+    ./scripts/evaluate_bpe1_7.sh > ./translations/results/bpe1_k7_results.txt
+    ./scripts/evaluate_bpe1_8.sh > ./translations/results/bpe1_k8_results.txt
+    ./scripts/evaluate_bpe1_9.sh > ./translations/results/bpe1_k9_results.txt
+    ./scripts/evaluate_bpe1_10.sh > ./translations/results/bpe1_k10_results.txt
+
+In order to create the graph from the results, run the following command:
+
+    python3 ./scripts/create_graph.py ./translations/results
 
 The results are shown in the graph below:
 
