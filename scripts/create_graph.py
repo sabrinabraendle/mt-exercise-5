@@ -3,7 +3,7 @@
 
 # Run this script with the following command:
 # $ python3 create_graph.py INPUT_FOLDER
-# i.e.: $ python3 create_graph.py ./translations/results
+# i.e.: $ python3 ./scripts/create_graph.py ./translations/results
 
 
 import argparse
@@ -20,9 +20,7 @@ def get_parser() -> argparse.ArgumentParser:
 
 def read_results(input_files):
     """
-    Function to open a text file and read all sentences into memory, as strings, and return all tokenized sentences.
-    For tokenization, Sacremoses is used.
-    :return: all tokenized sentences
+    Function to open all files in a directory and read all beam sizes and BLEU scores into memory.
     """
     beams = []
     BLEUs = []
@@ -30,13 +28,22 @@ def read_results(input_files):
     # Loop over all input files and store the beam size and BLEU score
     for filename in os.listdir(input_files):
         file = os.path.join(input_files, filename)
-        beams.append(filename)
+        beams.append(int(filename.split('_')[1].strip('k')))
         with open(file, 'r', encoding='utf-8') as file:
             for line in file:
-                if 'score' in line:
-                    BLEUs.append(line.split()[-1])
+                if '"score"' in line:
+                    BLEUs.append(float(line.split()[-1].strip(',')))
 
     return beams, BLEUs
+
+
+def create_graph(beam_sizes, BLEU_scores):
+    """
+    Function to create graph with beam sizes on the x-axis and BLEU scores on the y-axis.
+    """
+    print(beam_sizes)
+    print(BLEU_scores)
+    pass
 
 
 def main():
@@ -52,9 +59,10 @@ def main():
     result_files = args.files
 
     # Read in two text files (specified as arguments on command line)
-    BLEU, beam = read_results(result_files)
-    print(BLEU)
-    print(beam)
+    beam, BLEU = read_results(result_files)
+
+    graph = create_graph(beam, BLEU)
+    print(graph)
 
 
 if __name__ == '__main__':

@@ -1,0 +1,16 @@
+###############################################################################
+model_name transformer_bpe1_k10_config
+{
+ "name": "BLEU",
+ "score": 20.1,
+ "signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.1.0",
+ "verbose_score": "54.3/28.3/16.2/9.6 (BP = 0.908 ratio = 0.912 hyp_len = 25954 ref_len = 28445)",
+ "nrefs": "1",
+ "case": "mixed",
+ "eff": "no",
+ "tok": "13a",
+ "smooth": "exp",
+ "version": "2.1.0"
+}
+time taken:
+626 seconds
