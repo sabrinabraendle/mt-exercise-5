@@ -109,10 +109,11 @@ b) bpe-level1 | yes | 2000 | 20.4 |
 c) bpe-level2 | yes | 1000 | 18.5 |
 
 ### Discussion
-...
 
-TODO: Investigate the difference in BLEU on the test set, 
-but also describe how translations differ if you look at them manually.
+After a first glance at the table, it is reasonable to conclude that for the translation direction EN-IT, the use of Byte Pair Encoding improves the system’s performance significantly. With the same vocabulary size, and while the word-level model results to a BLEU score of 11.8, the BPE-level1 model reaches the score of 20.4. In addition, the BPE model (level 2) performs significantly better than the word-level one, even with half the size in vocabulary. As a result of BPE, unknown or rare words are more effectively encoded.
+
+These results are confirmed by looking at the translations produced by the models. The BPE model’s translation with vocabulary size 2000, is the one with the highest lexical diversity between the three. The semantics are captured with much more success compared to the other two models. For instance, the sentence “And it was a huge success.” is translated by BPE-level1 model as “Ed era un enorme successo.”, and by the BPE-level2 model and the word-level model as “Ed era un grande successo.”. It is important to mention that, even in the BPE-level1 model’s output, some words are left untranslated -meaning that some English words occur in the Italian text and other words do not even exist in the output even untranslated. Nevertheless, in BPE-level1 model they are far less than in the other two models. The number of unknown tokens in the word-level model’s output comes to confirm why the BLEU score of this model is so low.
+
 
 
 # Beam Search
