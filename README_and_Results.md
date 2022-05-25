@@ -110,9 +110,24 @@ c) bpe-level2 | yes | 1000 | 18.5 |
 
 ### Discussion
 
-After a first glance at the table, it is reasonable to conclude that for the translation direction EN-IT, the use of Byte Pair Encoding improves the system’s performance significantly. With the same vocabulary size, and while the word-level model results to a BLEU score of 11.8, the BPE-level1 model reaches the score of 20.4. In addition, the BPE model (level 2) performs significantly better than the word-level one, even with half the size in vocabulary. As a result of BPE, unknown or rare words are more effectively encoded.
+After a first glance at the table, it is reasonable to conclude that for the translation direction 
+EN-IT, the use of Byte Pair Encoding improves the system’s performance significantly. 
+With the same vocabulary size, and while the word-level model results to a BLEU score of 11.8, 
+the BPE-level1 model reaches the score of 20.4. In addition, the BPE model (level 2) 
+performs significantly better than the word-level one, even with half the size in vocabulary. 
+As a result of BPE, unknown or rare words are more effectively encoded.
 
-These results are confirmed by looking at the translations produced by the models. The BPE model’s translation with vocabulary size 2000, is the one with the highest lexical diversity between the three. The semantics are captured with much more success compared to the other two models. For instance, the sentence “And it was a huge success.” is translated by BPE-level1 model as “Ed era un enorme successo.”, and by the BPE-level2 model and the word-level model as “Ed era un grande successo.”. It is important to mention that, even in the BPE-level1 model’s output, some words are left untranslated -meaning that some English words occur in the Italian text and other words do not even exist in the output even untranslated. Nevertheless, in BPE-level1 model they are far less than in the other two models. The number of unknown tokens in the word-level model’s output comes to confirm why the BLEU score of this model is so low.
+These results are confirmed by looking at the translations produced by the models. 
+The BPE model’s translation with vocabulary size 2000, is the one with the highest lexical 
+diversity between the three. The semantics are captured with much more success compared to 
+the other two models. For instance, the sentence “And it was a huge success.” is translated 
+by BPE-level1 model as “Ed era un enorme successo.”, and by the BPE-level2 model and the 
+word-level model as “Ed era un grande successo.”. It is important to mention that, 
+even in the BPE-level1 model’s output, some words are left untranslated 
+-meaning that some English words occur in the Italian text and other words do not 
+even exist in the output even untranslated. Nevertheless, in BPE-level1 model they 
+are far less than in the other two models. The number of unknown tokens in the word-level 
+model’s output comes to confirm why the BLEU score of this model is so low.
 
 
 
@@ -142,9 +157,17 @@ The results are shown in the graph below:
 
 
 ### Discussion
-...
 
-TODO: Given your graph, describe the impact of beam size on BLEU and your personal take on
-which beam size you would choose in the future.
+In the graph, we can see that the BLEU increases until a beam width of 4. With greater beam widths, 
+the BLEU scores are not increasing anymore and are gradually getting lower. By increasing 
+beam widths, sequences are kept in memory which are disproportionately based on earlier, 
+low probability tokens.
+
+This means, if we keep too few translations, we might miss on translations for words which are less probable
+but fitting for the particular source sentence to translate. On the other hand, if we keep too 
+many possible translations in memory, this might lead to sentences which, at some point 
+in the translation with beam search, had significantly lower probabilities compared to 
+competing translations at that point, which can lead to a lower BLEU score in the end.
+
 
 
