@@ -159,15 +159,20 @@ The results are shown in the graph below:
 ### Discussion
 
 In the graph, we can see that the BLEU increases until a beam width of 4. With greater beam widths, 
-the BLEU scores are not increasing anymore and are gradually getting lower. By increasing 
-beam widths, sequences are kept in memory which are disproportionately based on earlier, 
-low probability tokens.
+the BLEU scores are not increasing anymore and are gradually getting lower. We found several possible reasons 
+for this behaviour in BLEU scores associated with the beam width used:
 
-This means, if we keep too few translations, we might miss on translations for words which are less probable
-but fitting for the particular source sentence to translate. On the other hand, if we keep too 
-many possible translations in memory, this might lead to sentences which, at some point 
-in the translation with beam search, had significantly lower probabilities compared to 
+By increasing beam widths, sequences are kept in memory which are disproportionately based on earlier 
+low probability tokens. Later, these unlikely early tokens are compensated by subsequent tokens which have
+a much higher conditional probability compared to the subsequent tokens of the more probable 
+early tokens [Cohen and Beck 2019].
+
+This means, if we keep too few translations, we might miss on translations for words which are 
+less probable but fitting for the particular source sentence to translate. On the other hand, 
+if we keep too many possible translations in memory, this might lead to sentences which, 
+at some point in the translation with beam search, had significantly lower probabilities compared to 
 competing translations at that point, which can lead to a lower BLEU score in the end.
 
+# References
 
-
+Cohen, E. and Beck, C., 2019, May. Empirical analysis of beam search performance degradation in neural sequence models. In International Conference on Machine Learning (pp. 1290-1299). PMLR.
