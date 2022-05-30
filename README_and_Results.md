@@ -173,6 +173,17 @@ if we keep too many possible translations in memory, this might lead to sentence
 at some point in the translation with beam search, had significantly lower probabilities compared to 
 competing translations at that point, which can lead to a lower BLEU score in the end.
 
+In addition, after some research, we found out that this problem is referred to as "the beam 
+search curse". The reason behind it is that when the beam size increases, the model has more 
+candidate translations to choose from. And because of that, the algorithm will find the 
+<eos> symbol faster/easier. At the end the generated translation length will be shorter and 
+subsequently the length ratio aka hypothesis length/ reference length  will drop. This length 
+ratio is included in the brevity penalty when computing the Bleu scores. And if the BP is 
+smaller the Bleu score will be smaller as well. This means that short sequences will be less 
+penalized and maybe some translations will be missing at the end. [Yang et al., 2018]
+
 # References
 
-Cohen, E. and Beck, C., 2019, May. Empirical analysis of beam search performance degradation in neural sequence models. In International Conference on Machine Learning (pp. 1290-1299). PMLR.
+Cohen, E. & Beck, C. (2019). Empirical Analysis of Beam Search Performance Degradation in Neural Sequence Models. <i>Proceedings of the 36th International Conference on Machine Learning</i>, in <i>Proceedings of Machine Learning Research</i> 97:1290-1299 Available from https://proceedings.mlr.press/v97/cohen19a.html.
+
+Yang, Y., Huang, L., & Ma, M. (2018). Breaking the Beam Search Curse: A Study of (Re-)Scoring Methods and Stopping Criteria for Neural Machine Translation. doi:10.48550/ARXIV.1808.09582
